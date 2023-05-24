@@ -5,6 +5,7 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import Order from "../Pages/Order/Order";
 import OurFood from "../Pages/OurFood/OurFood";
+import Login from "../Pages/Login/Login";
 
 const router = createBrowserRouter([
 	{
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
 			{
 				path: "/our-food",
 				element: <OurFood />,
+			},
+			{
+				path: "/login",
+				element: <Login />,
 			},
 		],
 	},

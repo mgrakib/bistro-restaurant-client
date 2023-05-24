@@ -17,6 +17,9 @@ const NavBar = () => {
 			<li>
 				<Link to='/our-food'>OUR SHOP</Link>
 			</li>
+			<li>
+				<Link to='/login'>LOGIN</Link>
+			</li>
 			<div className='h-[42px] w-[42px] rounded-full border border-gray-700 '></div>
 			<div className='flex items-center gap-2'>
 				<li>SING OUT</li>

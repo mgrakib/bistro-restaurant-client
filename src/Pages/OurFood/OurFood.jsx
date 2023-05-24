@@ -9,13 +9,14 @@ import { Helmet } from "react-helmet-async";
 
 const OurFood = () => {
     const [tabIndex, setTabIndex] = useState(0);
-    const [menu] = useMenu();
+    const [menu,loader, a] = useMenu();
     const drinks = menu.filter(item => item.category === "drinks");
 	const pizza = menu.filter(item => item.category === "pizza");
 	const dessert = menu.filter(item => item.category === "dessert");
 	const soup = menu.filter(item => item.category === "soup");
 	const salad = menu.filter(item => item.category === "salad");
-    return (
+	
+	return (
 		<div>
 			<Helmet>
 				<title>Food Order | Bristo Resturent</title>
@@ -45,6 +46,10 @@ const OurFood = () => {
 									item={item}
 								/>
 							))}
+						</div>
+
+						<div>
+						{a.map(b => <button className="btn" key={b}>{ b}</button>)}
 						</div>
 					</TabPanel>
 					<TabPanel>

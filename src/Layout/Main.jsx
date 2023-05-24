@@ -1,16 +1,18 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import NavBar from '../Pages/Share/NavBar';
 import Footer from '../Pages/Share/Footer';
 
 const Main = () => {
+    const location = useLocation();
+    const showNavBarFooter = location.pathname.includes('login');
     return (
-        <>
-            <NavBar />
-            <Outlet />
-            <Footer />
-        </>
-    );
+		<>
+			{showNavBarFooter || <NavBar />}
+			<Outlet />
+			{showNavBarFooter || <Footer />}
+		</>
+	);
 };
 
 export default Main;

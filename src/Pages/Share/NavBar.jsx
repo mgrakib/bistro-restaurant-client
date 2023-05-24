@@ -1,15 +1,22 @@
 /** @format */
 
 import { FaUserAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
     const navItems = (
 		<>
-			<li>HOME</li>
+			<li>
+				<Link to='/'>HOME</Link>
+			</li>
 			<li>CONTACT US</li>
 			<li>DASHBOARD</li>
-			<li>OUR MENU</li>
-			<li>OUR SHOP</li>
+			<li>
+				<Link to={"/order"}>OUR MENU</Link>
+			</li>
+			<li>
+				<Link to='/our-food'>OUR SHOP</Link>
+			</li>
 			<div className='h-[42px] w-[42px] rounded-full border border-gray-700 '></div>
 			<div className='flex items-center gap-2'>
 				<li>SING OUT</li>

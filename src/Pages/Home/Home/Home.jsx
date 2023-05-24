@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import ContactNumber from "../../../components/ContactNumber/ContactNumber";
 import BristoBoss from "../BristoBoss/BristoBoss";
 import ChefRecommend from "../ChefRecommend/ChefRecommend";
@@ -9,17 +10,20 @@ import Slider from "../Slider/Slider";
 
 const Home = () => {
     return (
-        <div>
-            <Slider />
-            <OnlineOrder />
-            <BristoBoss />
-            <Menu />
-            <ContactNumber />
-            <ChefRecommend />
-            <Featured />
-            <Reviews />
-        </div>
-    );
+		<div>
+			<Helmet>
+				<title>Home | Bristo Resturent</title>
+			</Helmet>
+			<Slider />
+			<OnlineOrder />
+			<BristoBoss />
+			<Menu />
+			<ContactNumber />
+			<ChefRecommend />
+			<Featured />
+			<Reviews />
+		</div>
+	);
 };
 
 export default Home;

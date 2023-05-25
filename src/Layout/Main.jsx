@@ -5,7 +5,9 @@ import Footer from '../Pages/Share/Footer';
 
 const Main = () => {
     const location = useLocation();
-    const showNavBarFooter = location.pathname.includes('login');
+    const showNavBarFooter =
+		location.pathname.includes("login") ||
+		location.pathname.includes("register");
     return (
 		<>
 			{showNavBarFooter || <NavBar />}

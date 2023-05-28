@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet-async";
 
 const OurFood = () => {
     const [tabIndex, setTabIndex] = useState(0);
-    const [menu,loader, a] = useMenu();
+	const [menu] = useMenu();
     const drinks = menu.filter(item => item.category === "drinks");
 	const pizza = menu.filter(item => item.category === "pizza");
 	const dessert = menu.filter(item => item.category === "dessert");
@@ -48,9 +48,7 @@ const OurFood = () => {
 							))}
 						</div>
 
-						<div>
-						{a.map(b => <button className="btn" key={b}>{ b}</button>)}
-						</div>
+					
 					</TabPanel>
 					<TabPanel>
 						<div className='grid md:grid-cols-3 gap-10'>

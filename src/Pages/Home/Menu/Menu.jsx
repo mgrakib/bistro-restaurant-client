@@ -5,15 +5,17 @@ import DisplayManu from './DisplayManu';
 const Menu = () => {
     const [menu, setMenu] = useState([]);
     useEffect(() => {
-        fetch("menu.json")
+        fetch("http://localhost:5000/menu")
 			.then(res => res.json())
-            .then(data => {
-                const popularMenu = data.filter(
+			.then(data => {
+				const popularMenu = data.filter(
 					item => item.category === "popular"
 				);
-                setMenu(popularMenu);
-            });
+				setMenu(popularMenu);
+			});
     },[])
+
+	
     return (
 		<section className='py-[50px] px-[300px]'>
 			<SectionTitle

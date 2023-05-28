@@ -10,17 +10,24 @@ import {
 } from "react-simple-captcha";
 import { useEffect } from "react";
 import loingImg from "../../assets/menu/menu-bg.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../Share/SocialLogin/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useState } from "react";
 import Modal from "../Register/Modal";
+import Swal from "sweetalert2";
 const Login = () => {
 	const { userLogin } = useContext(AuthContext);
 	const [isDisable, setIsDisable] = useState(true);
 	const [error, setError] = useState(true);
 	const [isLoading, setIsLoading] = useState(false)
+	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from || "/";
+
+
+	console.log('from ', from, ' locai ', location);
 	const handelCapcha = e => {
 
 			const user_captcha_value = e.target.value;
@@ -47,6 +54,13 @@ const Login = () => {
 		userLogin(email, password)
 			.then(() => {
 				setIsLoading(false);
+				Swal.fire({
+					icon: "success",
+					title: "Yeap...",
+					text: "Successfully Login!",
+					footer: '<a href="">Why do I have this issue?</a>',
+				});
+				navigate(from, { replace: true });
 			})
 			.catch(err => {
 				setError(err.message)
@@ -144,7 +158,7 @@ const Login = () => {
 							className='w-full p-3 rounded-md outline-none border border-gray-600 bg-[#DBB984] cursor-pointer btn'
 							type='submit'
 							value='Login'
-							disabled={isDisable}
+							disabled={false}
 						/>
 					</form>
 

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active{
+    @apply bg-transparent text-white
+}
+
+.default {
+    @apply hover:bg-gray-600  hover:text-white
+}

@@ -22,7 +22,7 @@ const Reviews = () => {
     }, [])
     
 
-    console.log(reviews);
+
     return (
 		<div className='py-[50px] px-[300px]'>
 			<SectionTitle

@@ -6,17 +6,18 @@ import saladImg from '../../assets/menu/salad-bg.jpg'
 import soupImg from '../../assets/menu/soup-bg.jpg'
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import useMenu from '../../hooks/useMenu';
-import DisplayManu from '../Home/Menu/DisplayManu';
 import ItemsShow from './ItemsShow/ItemsShow';
 import { Helmet } from 'react-helmet-async';
 const Order = () => {
-    const [menu] = useMenu();
+	const { menu } = useMenu();
+	
     const offered = menu.filter(item => item.category === "offered");
     const pizza = menu.filter(item => item.category === "pizza");
     const dessert = menu.filter(item => item.category === "dessert");
     const soup = menu.filter(item => item.category === "soup");
     const salad = menu.filter(item => item.category === "salad");
 
+	
     return (
 		<div>
 			<Helmet>

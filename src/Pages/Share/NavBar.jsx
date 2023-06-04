@@ -9,10 +9,11 @@ import useCart from "../../hooks/useCart";
 
 const NavBar = () => {
 	const { user, logOut } = useContext(AuthContext);
-	const [cart] = useCart();
+	const {cart} = useCart();
 	const handelLogout = () => {
 		logOut().then(() => {}).catch(err => console.log(err.message))
 	}
+	
     const navItems = (
 		<>
 			<li>
@@ -46,7 +47,13 @@ const NavBar = () => {
 			) : (
 				""
 			)}
-			<div className='h-[42px] w-[42px] rounded-full border border-gray-700 '></div>
+			<div className='h-[42px] w-[42px] rounded-full border border-gray-700 overflow-hidden'>
+				<img
+					src={user?.photoURL}
+					alt=''
+					title={user?.email}
+				/>
+			</div>
 			{user ? (
 				<div className='flex items-center gap-2'>
 					<li

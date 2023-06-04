@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
-	const [,refatch] = useCart();
+	const {refatch} = useCart();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { user } = useContext(AuthContext);
@@ -37,8 +37,9 @@ const FoodCard = ({ item }) => {
 						showConfirmButton: false,
 						timer: 1500,
 					});
+					refatch();
 				}
-				refatch()
+				
 			})
 		} else {
 			navigate("/login", { state: { from: location } });

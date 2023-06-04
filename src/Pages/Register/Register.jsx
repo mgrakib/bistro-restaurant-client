@@ -1,5 +1,5 @@
 /** @format */
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import Lottie from "lottie-react";
 import login from "../../../public/106680-login-and-sign-up.json";
 
@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import Modal from "./Modal";
+import Modal from "../Register/Modal";
 
 const Register = () => {
 	const { createUser, updateUserNamePhoto } = useContext(AuthContext);
@@ -28,30 +28,44 @@ const Register = () => {
 		formState: { errors },
 	} = useForm();
 
+	
+
 	const onSubmit = data => {
 		setIsLoading(true);
 		const { name, email, photo, password } = data;
+
 		createUser(email, password)
 			.then(res =>
 				updateUserNamePhoto(name, photo)
 					.then(res => {
-						setIsLoading(false);
-						Swal.fire({
-							icon: "success",
-							title: "Yeap...",
-							text: "Successfully Create account!",
-							footer: '<a href="">Why do I have this issue?</a>',
-						});
-						navigate(from, { replace: true });
+						const saveUser = { name, email };
+
+						
+						fetch(`http://localhost:5000/users`, {
+							method: "POST",
+							headers: { "content-type": "application/json" },
+							body: JSON.stringify(saveUser),
+						})
+							.then(res => res.json())
+							.then(() => {
+								setIsLoading(false);
+								Swal.fire({
+									icon: "success",
+									title: "Yeap...",
+									text: "Successfully Create account!",
+									footer: '<a href="">Why do I have this issue?</a>',
+								});
+								navigate(from, { replace: true });
+							});
 					})
 					.catch(err => {
 						setIsLoading(false);
-						setError(err.message)
+						setError(err.message);
 					})
 			)
 			.catch(err => {
 				setIsLoading(false);
-				setError(err.message)
+				setError(err.message);
 			});
 	};
 

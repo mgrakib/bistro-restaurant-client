@@ -21,25 +21,21 @@ const Login = () => {
 	const { userLogin } = useContext(AuthContext);
 	const [isDisable, setIsDisable] = useState(true);
 	const [error, setError] = useState(true);
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const from = location.state?.from || "/";
 
-
-	console.log('from ', from, ' locai ', location);
 	const handelCapcha = e => {
+		const user_captcha_value = e.target.value;
 
-			const user_captcha_value = e.target.value;
-
-			if (validateCaptcha(user_captcha_value) == true) {
-				setIsDisable(false)
-			} else {
-				alert("Captcha Does Not Match");
-				setIsDisable(true);
-			}
+		if (validateCaptcha(user_captcha_value) == true) {
+			setIsDisable(false);
+		} else {
+			alert("Captcha Does Not Match");
+			setIsDisable(true);
+		}
 	};
-
 
 	const {
 		register,
@@ -49,10 +45,10 @@ const Login = () => {
 	} = useForm();
 	const onSubmit = data => {
 		setIsLoading(true);
-		setError('')
+		setError("");
 		const { email, password } = data;
 		userLogin(email, password)
-			.then(() => {
+			.then(result => {
 				setIsLoading(false);
 				Swal.fire({
 					icon: "success",
@@ -61,9 +57,30 @@ const Login = () => {
 					footer: '<a href="">Why do I have this issue?</a>',
 				});
 				navigate(from, { replace: true });
+				
+				// const loogedUser = { email: result.user.email };
+
+				
+				// fetch(`http://localhost:5000/jwt`, {
+				// 	method: "POST",
+				// 	headers: { "content-type": "application/json" },
+				// 	body: JSON.stringify(loogedUser),
+				// })
+				// 	.then(res => res.json())
+				// 	.then(data => {
+				// 		localStorage.setItem("access-token", data.token);
+				// 		setIsLoading(false);
+				// 		Swal.fire({
+				// 			icon: "success",
+				// 			title: "Yeap...",
+				// 			text: "Successfully Login!",
+				// 			footer: '<a href="">Why do I have this issue?</a>',
+				// 		});
+				// 		navigate(from, { replace: true });
+				// 	});
 			})
 			.catch(err => {
-				setError(err.message)
+				setError(err.message);
 				setIsLoading(false);
 			});
 	};
@@ -176,7 +193,7 @@ const Login = () => {
 					<SocialLogin />
 				</div>
 			</div>
-			<Modal isLoading={isLoading}/>
+			<Modal isLoading={isLoading} />
 		</div>
 	);
 };

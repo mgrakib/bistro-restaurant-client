@@ -9,7 +9,7 @@ AOS.init();
 const Modal = ({ isLoading }) => {
 
 
-    console.log(isLoading);
+    
 	return (
 		<div
 			

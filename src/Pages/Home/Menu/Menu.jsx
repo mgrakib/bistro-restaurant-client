@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import DisplayManu from './DisplayManu';
+import useMenu from '../../../hooks/useMenu';
 
 const Menu = () => {
-    const [menu, setMenu] = useState([]);
-    useEffect(() => {
-        fetch("http://localhost:5000/menu")
-			.then(res => res.json())
-			.then(data => {
-				const popularMenu = data.filter(
-					item => item.category === "popular"
-				);
-				setMenu(popularMenu);
-			});
-    },[])
-
+	const {menu} = useMenu();
 	
     return (
 		<section className='py-[50px] px-[300px]'>
